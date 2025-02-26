@@ -33,7 +33,7 @@ useEffect(() => {
     return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
   }
 
-  const toggleTask = (id) => {
+/*  const toggleTask = (id) => {
     const updatedTasks = tasks.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
     );
@@ -52,6 +52,30 @@ useEffect(() => {
 
     setShowPopup(true);
   };
+*/
+const toggleTask = (id) => {
+  const updatedTasks = tasks.map(task =>
+    task.id === id ? { ...task, completed: !task.completed } : task
+  );
+
+  setTasks(updatedTasks);
+
+  // Verifică dacă toate task-urile sunt completate
+  const allTasksCompleted = updatedTasks.every(task => task.completed);
+
+  if (allTasksCompleted) {
+    setTimeout(() => {
+      setTasks([]); // Ascunde cardul după 1 secundă
+    }, 1000);
+    
+    setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
+  } else {
+    const remainingTasks = updatedTasks.filter(task => !task.completed).length;
+    setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
+  }
+
+  setShowPopup(true);
+};
 
   return (
     <div className="container mt-4">
