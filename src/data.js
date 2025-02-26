@@ -11,6 +11,18 @@ const menuData = {
     days: {
       monday: { dayName: "Luni", icon: "🌞", breakfast: "Ouă fierte", lunch: "Pui cu quinoa", dinner: "Somon cu legume", snacks: ["Fructe uscate", "Iaurt"], water: "2.5L" }
     }
+  },
+week_3: {
+    name: "Săptămâna 3",
+    days: {
+      monday: { dayName: "Luni", icon: "🌞", breakfast: "Ouă fierte", lunch: "Pui cu quinoa", dinner: "Somon cu legume", snacks: ["Fructe uscate", "Iaurt"], water: "2.5L" }
+    }
+  },
+week_4: {
+    name: "Săptămâna 4",
+    days: {
+      monday: { dayName: "Luni", icon: "🌞", breakfast: "Ouă fierte", lunch: "Pui cu quinoa", dinner: "Somon cu legume", snacks: ["Fructe uscate", "Iaurt"], water: "2.5L" }
+    }
   }
 };
 
