@@ -44,10 +44,10 @@ useEffect(() => {
 
     if (remainingTasks === 0) {
       setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ${plan[selectedWeek].days[selectedDay].dayName}!`);
-      setTimeout(() => setShowPopup(false), 5000);
+      setTimeout(() => setShowPopup(false), 7000);
     } else {
       setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
-      setTimeout(() => setShowPopup(false), 3000);
+      setTimeout(() => setShowPopup(false), 5000);
     }
 
     setShowPopup(true);
@@ -56,7 +56,7 @@ useEffect(() => {
   return (
     <div className="container mt-4">
       <h1 className="text-center text-primary">
-        <FaUtensils className="me-2" /> Plan Alimentar
+        <FaUtensils className="me-2" /> Plan Alimentar Simona 
       </h1>
 
       {/* Meniu săptămâni */}
