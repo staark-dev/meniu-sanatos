@@ -1,5 +1,4 @@
 const menuData = {
-  {
   "week_1": {
     "name": "Săptămâna 1",
     "days": {
@@ -68,7 +67,6 @@ const menuData = {
       }
     }
   }
-}
 };
 
 export default menuData;
