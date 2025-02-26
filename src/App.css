@@ -1,3 +1,11 @@
+body {
+  background-color: #ADD8E6;
+  margin: 0;
+  padding: 0;
+  font-size: 14;
+  font-weight: 500;
+}
+
 /* Meniu săptămâni responsive */
 .week-menu {
   display: flex;
