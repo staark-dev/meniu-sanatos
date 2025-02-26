@@ -85,18 +85,19 @@ const App = () => {
         </div>
       )}
 
-      {/* Meniu zilei selectate */}
-      {selectedDay && menuData[selectedWeek].days[selectedDay] && (
-        <div className="card p-3 shadow mt-3">
-          <h3><FaUtensils className="me-2" /> {menuData[selectedWeek].days[selectedDay].dayName}</h3>
-          <ul className="list-group">
-            <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {menuData[selectedWeek].days[selectedDay].breakfast}</li>
-            <li className="list-group-item"><strong>🥗 Prânz:</strong> {menuData[selectedWeek].days[selectedDay].lunch}</li>
-            <li className="list-group-item"><strong>🍽 Cină:</strong> {menuData[selectedWeek].days[selectedDay].dinner}</li>
-           <li className="list-group-item"><strong>🍽 Snacks:</strong> {menuData[selectedWeek].days[selectedDay].snak}</li>
-          </ul>
-        </div>
-      )}
+{/* Meniu zilei selectate */}
+{selectedDay && menuData[selectedWeek].days[selectedDay] && (
+  <div className="card p-3 shadow mt-3">
+    <h3><FaUtensils className="me-2" /> {menuData[selectedWeek].days[selectedDay].dayName}</h3>
+    <ul className="list-group">
+      <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {menuData[selectedWeek].days[selectedDay].breakfast}</li>
+      <li className="list-group-item"><strong>🥑 Gustare:</strong> {menuData[selectedWeek].days[selectedDay].snack1}</li>
+      <li className="list-group-item"><strong>🥗 Prânz:</strong> {menuData[selectedWeek].days[selectedDay].lunch}</li>
+      <li className="list-group-item"><strong>🍌 Gustare:</strong> {menuData[selectedWeek].days[selectedDay].snack2}</li>
+      <li className="list-group-item"><strong>🍽 Cină:</strong> {menuData[selectedWeek].days[selectedDay].dinner}</li>
+    </ul>
+  </div>
+)}
 
       {/* Task-uri zilei selectate */}
       {tasks.length > 0 && (
