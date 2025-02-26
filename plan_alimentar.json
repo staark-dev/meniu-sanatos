@@ -1,0 +1,122 @@
+{
+    "week_1": {
+        "name": "Săptămâna 1",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Omletă cu spanac și avocado + pâine integrală",
+                "snack1": "Mână de migdale",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu semințe de chia",
+                "dinner": "Somon la cuptor cu sparanghel"
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Fulgi de ovăz cu fructe de pădure",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Salată cu ton, măsline și ou fiert"
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie proteic",
+                "snack1": "Baton proteic",
+                "lunch": "Pește alb cu orez brun și legume sotate",
+                "snack2": "Cottage cheese cu zmeură",
+                "dinner": "Supă cremă de dovlecel și piept de pui"
+            },
+            "day_4-7": "Se alternează mesele din zilele anterioare"
+        }
+    },
+    "week_2": {
+        "name": "Săptămâna 2",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Ouă fierte cu avocado și roșii cherry",
+                "snack1": "Mână de nuci",
+                "lunch": "Piept de curcan la grătar cu piure de conopidă",
+                "snack2": "Iaurt grecesc cu semințe de in",
+                "dinner": "Somon la cuptor cu broccoli"
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Omletă cu ciuperci și feta",
+                "snack1": "Baton proteic",
+                "lunch": "Salată cu ton, quinoa și spanac",
+                "snack2": "Migdale și măr verde",
+                "dinner": "Supă cremă de linte cu pâine integrală"
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie cu lapte de migdale, banană și unt de arahide",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Friptură de vită cu legume la grătar",
+                "snack2": "Brânză cottage cu afine",
+                "dinner": "Tocăniță de legume cu piept de pui"
+            },
+            "day_4-7": "Se alternează mesele din zilele anterioare"
+        }
+    },
+    "week_3": {
+        "name": "Săptămâna 3",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Iaurt grecesc cu nuci și fructe de pădure",
+                "snack1": "Un ou fiert + morcov",
+                "lunch": "Somon la aburi cu orez brun și salată verde",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Supă cremă de broccoli cu crutoane integrale"
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Terci de ovăz cu semințe de chia și zmeură",
+                "snack1": "Baton proteic",
+                "lunch": "Piept de curcan cu piure de cartofi dulci",
+                "snack2": "Iaurt cu semințe de in",
+                "dinner": "Salată cu ou fiert, avocado și măsline"
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Omletă cu brânză și roșii",
+                "snack1": "Mână de migdale",
+                "lunch": "Tocăniță de vită cu legume",
+                "snack2": "Smoothie proteic",
+                "dinner": "Pește alb la grătar cu dovlecel"
+            },
+            "day_4-7": "Se alternează mesele din zilele anterioare"
+        }
+    },
+    "week_4": {
+        "name": "Săptămâna 4",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Ouă fierte cu spanac și pâine integrală",
+                "snack1": "Un măr verde și unt de arahide",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu nuci",
+                "dinner": "Somon la grătar cu legume sotate"
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Smoothie cu lapte de migdale și fructe de pădure",
+                "snack1": "Migdale și ceai verde",
+                "lunch": "Pește alb cu orez brun și broccoli",
+                "snack2": "Baton proteic",
+                "dinner": "Supă cremă de linte cu crutoane integrale"
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Terci de ovăz cu semințe de chia",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și iaurt",
+                "dinner": "Salată cu ton și avocado"
+            },
+            "day_4-7": "Se alternează mesele din zilele anterioare"
+        }
+    }
+}
