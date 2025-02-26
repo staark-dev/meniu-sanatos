@@ -100,6 +100,23 @@ const App = () => {
         </div>
       )}
 
+      {/* Task-uri zilei selectate */}
+      {tasks.length > 0 && (
+        <div className="mt-4">
+          <h3><FaTasks className="me-2" /> Task-uri:</h3>
+          <ul className="list-group">
+            {tasks.map(task => (
+              <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
+                {task.text}
+                <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
+                  {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* Popup notificare */}
       {showPopup && (
         <div className="alert alert-info position-fixed top-0 start-50 translate-middle-x mt-3">
