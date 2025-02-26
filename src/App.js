@@ -3,100 +3,123 @@ import menuData from "./data";
 import tasksData from "./tasks";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { FaCheckCircle, FaRegCircle, FaUtensils, FaCalendarAlt, FaTasks, FaAward } from "react-icons/fa";
 
 const App = () => {
-  const [completedWeeks, setCompletedWeeks] = useState({});
-  const [darkMode, setDarkMode] = useState(false);
-
-  // Inițializează starea task-urilor pentru fiecare săptămână
-  const [taskState, setTaskState] = useState(() => {
-    const savedState = JSON.parse(localStorage.getItem("taskState")) || {};
-    return savedState;
-  });
+  const [selectedWeek, setSelectedWeek] = useState("week_1");
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("taskState", JSON.stringify(taskState));
-  }, [taskState]);
+    if (selectedDay && tasksData[selectedWeek]?.[selectedDay]) {
+      setTasks(tasksData[selectedWeek][selectedDay]);
+    } else {
+      setTasks([]);
+    }
+  }, [selectedWeek, selectedDay]);
 
-  const toggleTask = (week, id) => {
-    const updatedTasks = taskState[week].map(task =>
+  const toggleTask = (id) => {
+    const updatedTasks = tasks.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
     );
 
-    setTaskState({ ...taskState, [week]: updatedTasks });
+    const remainingTasks = updatedTasks.filter(task => !task.completed).length;
 
-    // Dacă toate task-urile sunt complete, marchează săptămâna ca finalizată
-    if (updatedTasks.every(task => task.completed)) {
-      setCompletedWeeks(prev => ({ ...prev, [week]: true }));
+    setTasks(updatedTasks);
+
+    if (remainingTasks === 0) {
+      setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ${menuData[selectedWeek].days[selectedDay].dayName}!`);
+      setTimeout(() => setShowPopup(false), 3000);
+    } else {
+      setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${menuData[selectedWeek].days[selectedDay].dayName}.`);
+      setTimeout(() => setShowPopup(false), 2000);
     }
+
+    setShowPopup(true);
   };
 
-  // Inițializează task-urile pentru fiecare săptămână
-  useEffect(() => {
-    const initialTasks = {};
-    Object.keys(tasksData).forEach(week => {
-      initialTasks[week] = tasksData[week];
-    });
-    setTaskState(initialTasks);
-  }, []);
-
   return (
-    <div className={`container mt-4 ${darkMode ? "dark-mode" : ""}`}>
-      {/* Buton Dark Mode */}
-      <button className="btn btn-dark mb-3" onClick={() => setDarkMode(!darkMode)}>
-        {darkMode ? "🌞 Mod Luminos" : "🌙 Mod Întunecat"}
-      </button>
+    <div className="container mt-4">
+      <h1 className="text-center text-primary">
+        <FaUtensils className="me-2" /> Plan Alimentar
+      </h1>
 
       {/* Meniu săptămâni */}
-      <h1 className="text-primary text-center">Plan Alimentar</h1>
-      <ul className="nav nav-tabs">
+      <div className="d-flex justify-content-center mb-3">
         {Object.keys(menuData).map(week => (
-          <li className="nav-item" key={week}>
-            <a className="nav-link" href={`#${week}`}>
-              {menuData[week].name}
-            </a>
-          </li>
+          <button
+            key={week}
+            className={`btn ${selectedWeek === week ? "btn-primary" : "btn-outline-primary"} mx-2`}
+            onClick={() => setSelectedWeek(week)}
+          >
+            <FaCalendarAlt className="me-2" />
+            {menuData[week].name}
+          </button>
         ))}
-      </ul>
+      </div>
 
-      {/* Afișează fiecare săptămână */}
-      {Object.keys(menuData).map(week => (
-        <div key={week} className="mt-4" id={week}>
-          <h2 className="text-secondary">{menuData[week].name}</h2>
-
-          {/* Meniu pe zile */}
-          {Object.keys(menuData[week].days).map(day => (
-            <div key={day} className="border p-3 mb-3 bg-light">
-              <h4>{menuData[week].days[day].icon} {menuData[week].days[day].dayName}</h4>
-              <ul className="list-group">
-                <li className="list-group-item"><strong>Mic dejun:</strong> {menuData[week].days[day].breakfast}</li>
-                <li className="list-group-item"><strong>Prânz:</strong> {menuData[week].days[day].lunch}</li>
-                <li className="list-group-item"><strong>Cină:</strong> {menuData[week].days[day].dinner}</li>
-                <li className="list-group-item"><strong>Gustări:</strong> {menuData[week].days[day].snacks.join(", ")}</li>
-                <li className="list-group-item"><strong>Apă:</strong> {menuData[week].days[day].water}</li>
-              </ul>
-            </div>
-          ))}
-
-          {/* Task-uri zilnice (se ascund dacă sunt completate) */}
-          {!completedWeeks[week] && taskState[week] && (
-            <>
-              <h3 className="mt-4">Task-uri pentru {menuData[week].name}:</h3>
-              <ul className="list-group">
-                {taskState[week].map(task => (
-                  <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
-                    {task.text}
-                    <button className={`btn ${task.completed ? "btn-success" : "btn-outline-secondary"} btn-sm`} 
-                      onClick={() => toggleTask(week, task.id)}>
-                      {task.completed ? "✔️" : "⚪"}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+      {/* Meniu zile */}
+      {selectedWeek && (
+        <div>
+          <h2 className="text-secondary">Selectează o zi:</h2>
+          <div className="d-flex flex-wrap">
+            {Object.keys(menuData[selectedWeek].days).map(day => (
+              <button
+                key={day}
+                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} m-2`}
+                onClick={() => setSelectedDay(day)}
+              >
+                {menuData[selectedWeek].days[day].icon} {menuData[selectedWeek].days[day].dayName}
+              </button>
+            ))}
+          </div>
         </div>
-      ))}
+      )}
+
+      {/* Meniu zilei selectate */}
+      {selectedDay && menuData[selectedWeek].days[selectedDay] && (
+        <div className="card p-3 shadow mt-3">
+          <h3><FaUtensils className="me-2" /> {menuData[selectedWeek].days[selectedDay].dayName}</h3>
+          <ul className="list-group">
+            <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {menuData[selectedWeek].days[selectedDay].breakfast}</li>
+            <li className="list-group-item"><strong>🥗 Prânz:</strong> {menuData[selectedWeek].days[selectedDay].lunch}</li>
+            <li className="list-group-item"><strong>🍽 Cină:</strong> {menuData[selectedWeek].days[selectedDay].dinner}</li>
+          </ul>
+        </div>
+      )}
+
+      {/* Task-uri zilei selectate */}
+      {tasks.length > 0 && (
+        <div className="mt-4">
+          <h3><FaTasks className="me-2" /> Task-uri:</h3>
+          <ul className="list-group">
+            {tasks.map(task => (
+              !task.completed && (
+                <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
+                  {task.text}
+                  <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
+                    {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
+                  </button>
+                </li>
+              )
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Popup notificare */}
+      {showPopup && (
+        <div className="alert alert-info position-fixed top-0 start-50 translate-middle-x mt-3">
+          {popupMessage}
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="text-center mt-5 p-3 bg-light">
+        <FaAward className="me-2 text-warning" /> © 2025 Plan Alimentar - Sănătate și echilibru
+      </footer>
     </div>
   );
 };
