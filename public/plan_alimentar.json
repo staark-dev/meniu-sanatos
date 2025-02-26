@@ -8,7 +8,13 @@
                 "snack1": "Mână de migdale",
                 "lunch": "Piept de pui la grătar cu salată de legume",
                 "snack2": "Iaurt grecesc cu semințe de chia",
-                "dinner": "Somon la cuptor cu sparanghel"
+                "dinner": "Somon la cuptor cu sparanghel",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_2": {
                 "dayName": "Ziua 2",
@@ -16,7 +22,13 @@
                 "snack1": "Un ou fiert + castravete",
                 "lunch": "Tocăniță de curcan cu legume",
                 "snack2": "Nuci și ceai verde",
-                "dinner": "Salată cu ton, măsline și ou fiert"
+                "dinner": "Salată cu ton, măsline și ou fiert",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_3": {
                 "dayName": "Ziua 3",
@@ -24,11 +36,27 @@
                 "snack1": "Baton proteic",
                 "lunch": "Pește alb cu orez brun și legume sotate",
                 "snack2": "Cottage cheese cu zmeură",
-                "dinner": "Supă cremă de dovlecel și piept de pui"
+                "dinner": "Supă cremă de dovlecel și piept de pui",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_4-7": {
-                "dayName": "4-7",
-                "breakfast": "Se alternează mesele din zilele anterioare"
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             }
         }
     },
@@ -41,7 +69,13 @@
                 "snack1": "Mână de nuci",
                 "lunch": "Piept de curcan la grătar cu piure de conopidă",
                 "snack2": "Iaurt grecesc cu semințe de in",
-                "dinner": "Somon la cuptor cu broccoli"
+                "dinner": "Somon la cuptor cu broccoli",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_2": {
                 "dayName": "Ziua 2",
@@ -49,7 +83,13 @@
                 "snack1": "Baton proteic",
                 "lunch": "Salată cu ton, quinoa și spanac",
                 "snack2": "Migdale și măr verde",
-                "dinner": "Supă cremă de linte cu pâine integrală"
+                "dinner": "Supă cremă de linte cu pâine integrală",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_3": {
                 "dayName": "Ziua 3",
@@ -57,9 +97,28 @@
                 "snack1": "Un ou fiert + castravete",
                 "lunch": "Friptură de vită cu legume la grătar",
                 "snack2": "Brânză cottage cu afine",
-                "dinner": "Tocăniță de legume cu piept de pui"
+                "dinner": "Tocăniță de legume cu piept de pui",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
-            "day_4-7": "Se alternează mesele din zilele anterioare"
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
+            }
         }
     },
     "week_3": {
@@ -71,7 +130,13 @@
                 "snack1": "Un ou fiert + morcov",
                 "lunch": "Somon la aburi cu orez brun și salată verde",
                 "snack2": "Nuci și ceai verde",
-                "dinner": "Supă cremă de broccoli cu crutoane integrale"
+                "dinner": "Supă cremă de broccoli cu crutoane integrale",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_2": {
                 "dayName": "Ziua 2",
@@ -79,7 +144,13 @@
                 "snack1": "Baton proteic",
                 "lunch": "Piept de curcan cu piure de cartofi dulci",
                 "snack2": "Iaurt cu semințe de in",
-                "dinner": "Salată cu ou fiert, avocado și măsline"
+                "dinner": "Salată cu ou fiert, avocado și măsline",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_3": {
                 "dayName": "Ziua 3",
@@ -89,7 +160,20 @@
                 "snack2": "Smoothie proteic",
                 "dinner": "Pește alb la grătar cu dovlecel"
             },
-            "day_4-7": "Se alternează mesele din zilele anterioare"
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
+            }
         }
     },
     "week_4": {
@@ -101,7 +185,13 @@
                 "snack1": "Un măr verde și unt de arahide",
                 "lunch": "Piept de pui la grătar cu salată de legume",
                 "snack2": "Iaurt grecesc cu nuci",
-                "dinner": "Somon la grătar cu legume sotate"
+                "dinner": "Somon la grătar cu legume sotate",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_2": {
                 "dayName": "Ziua 2",
@@ -109,7 +199,13 @@
                 "snack1": "Migdale și ceai verde",
                 "lunch": "Pește alb cu orez brun și broccoli",
                 "snack2": "Baton proteic",
-                "dinner": "Supă cremă de linte cu crutoane integrale"
+                "dinner": "Supă cremă de linte cu crutoane integrale",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
             "day_3": {
                 "dayName": "Ziua 3",
@@ -117,9 +213,28 @@
                 "snack1": "Un ou fiert + castravete",
                 "lunch": "Tocăniță de curcan cu legume",
                 "snack2": "Nuci și iaurt",
-                "dinner": "Salată cu ton și avocado"
+                "dinner": "Salată cu ton și avocado",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
             },
-            "day_4-7": "Se alternează mesele din zilele anterioare"
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                    {"id": , "text": "", "completed": false},
+                ]
+            }
         }
     }
 }
