@@ -13,6 +13,20 @@ const App = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [weeklyProgress, setWeeklyProgress] = useState(0);
 
+const calculateWeeklyProgress = () => {
+  let totalTasks = 0;
+  let completedTasksTotal = 0;
+
+  Object.values(plan[selectedWeek].days).forEach(day => {
+    if (day.tasks) {
+      totalTasks += day.tasks.length;
+      completedTasksTotal += day.tasks.filter(task => task.completed).length;
+    }
+  });
+
+  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
+};
+
 useEffect(() => {
   fetchPlanAlimentar().then((data) => {
     if (data) {
@@ -79,20 +93,6 @@ const toggleTask = (id) => {
   }
 
   setShowPopup(true);
-};
-
-const calculateWeeklyProgress = () => {
-  let totalTasks = 0;
-  let completedTasksTotal = 0;
-
-  Object.values(plan[selectedWeek].days).forEach(day => {
-    if (day.tasks) {
-      totalTasks += day.tasks.length;
-      completedTasksTotal += day.tasks.filter(task => task.completed).length;
-    }
-  });
-
-  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
 };
 
   return (
