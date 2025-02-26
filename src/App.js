@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import menuData from "./data";
 import tasksData from "./tasks";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 const App = () => {
   const [selectedWeek, setSelectedWeek] = useState("week_1");
