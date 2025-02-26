@@ -13,6 +13,7 @@ const App = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
+  // Selectează automat prima zi din săptămâna curentă
   useEffect(() => {
     const firstDay = Object.keys(menuData[selectedWeek].days)[0];
     setSelectedDay(firstDay);
@@ -37,10 +38,10 @@ const App = () => {
 
     if (remainingTasks === 0) {
       setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ${menuData[selectedWeek].days[selectedDay].dayName}!`);
-      setTimeout(() => setShowPopup(false), 3000);
+      setTimeout(() => setShowPopup(false), 7000); // Popup durează 7 secunde
     } else {
       setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${menuData[selectedWeek].days[selectedDay].dayName}.`);
-      setTimeout(() => setShowPopup(false), 2000);
+      setTimeout(() => setShowPopup(false), 5000); // Popup durează 5 secunde
     }
 
     setShowPopup(true);
@@ -52,7 +53,7 @@ const App = () => {
         <FaUtensils className="me-2" /> Plan Alimentar
       </h1>
 
-      {/* Meniu săptămâni responsive */}
+      {/* Meniu săptămâni */}
       <div className="week-menu d-flex flex-wrap justify-content-center mb-3">
         {weekKeys.map(week => (
           <button
@@ -74,7 +75,7 @@ const App = () => {
             {Object.keys(menuData[selectedWeek].days).map(day => (
               <button
                 key={day}
-                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} day-btn`}
+                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
                 onClick={() => setSelectedDay(day)}
               >
                 {menuData[selectedWeek].days[day].icon} {menuData[selectedWeek].days[day].dayName}
@@ -92,25 +93,6 @@ const App = () => {
             <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {menuData[selectedWeek].days[selectedDay].breakfast}</li>
             <li className="list-group-item"><strong>🥗 Prânz:</strong> {menuData[selectedWeek].days[selectedDay].lunch}</li>
             <li className="list-group-item"><strong>🍽 Cină:</strong> {menuData[selectedWeek].days[selectedDay].dinner}</li>
-          </ul>
-        </div>
-      )}
-
-      {/* Task-uri zilei selectate */}
-      {tasks.length > 0 && (
-        <div className="mt-4">
-          <h3><FaTasks className="me-2" /> Task-uri:</h3>
-          <ul className="list-group">
-            {tasks.map(task => (
-              !task.completed && (
-                <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
-                  {task.text}
-                  <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
-                    {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
-                  </button>
-                </li>
-              )
-            ))}
           </ul>
         </div>
       )}
