@@ -26,7 +26,11 @@
                 "snack2": "Cottage cheese cu zmeură",
                 "dinner": "Supă cremă de dovlecel și piept de pui"
             },
-            "day_4-7": "Se alternează mesele din zilele anterioare"
+            "day_4-7": {
+                "dayName": "4-7",
+                "breakfast 
+": "Se alternează mesele din zilele anterioare"
+            }
         }
     },
     "week_2": {
