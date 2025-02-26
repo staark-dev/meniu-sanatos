@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import menuData from "./data";
+import "./App.css";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -24,7 +25,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div className="container">
       <h1>Plan Alimentar Project</h1>
       <h2>Meniu Luni:</h2>
       <ul>
