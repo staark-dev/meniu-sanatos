@@ -6,11 +6,17 @@ import "./App.css";
 import { FaCheckCircle, FaRegCircle, FaUtensils, FaCalendarAlt, FaTasks, FaAward } from "react-icons/fa";
 
 const App = () => {
-  const [selectedWeek, setSelectedWeek] = useState("week_1");
+  const weekKeys = Object.keys(menuData);
+  const [selectedWeek, setSelectedWeek] = useState(weekKeys[0]);
   const [selectedDay, setSelectedDay] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+
+  useEffect(() => {
+    const firstDay = Object.keys(menuData[selectedWeek].days)[0];
+    setSelectedDay(firstDay);
+  }, [selectedWeek]);
 
   useEffect(() => {
     if (selectedDay && tasksData[selectedWeek]?.[selectedDay]) {
@@ -46,12 +52,12 @@ const App = () => {
         <FaUtensils className="me-2" /> Plan Alimentar
       </h1>
 
-      {/* Meniu săptămâni */}
-      <div className="d-flex justify-content-center mb-3">
-        {Object.keys(menuData).map(week => (
+      {/* Meniu săptămâni responsive */}
+      <div className="week-menu d-flex flex-wrap justify-content-center mb-3">
+        {weekKeys.map(week => (
           <button
             key={week}
-            className={`btn ${selectedWeek === week ? "btn-primary" : "btn-outline-primary"} mx-2`}
+            className={`btn ${selectedWeek === week ? "btn-primary" : "btn-outline-primary"} week-btn`}
             onClick={() => setSelectedWeek(week)}
           >
             <FaCalendarAlt className="me-2" />
@@ -63,12 +69,12 @@ const App = () => {
       {/* Meniu zile */}
       {selectedWeek && (
         <div>
-          <h2 className="text-secondary">Selectează o zi:</h2>
-          <div className="d-flex flex-wrap">
+          <h2 className="text-secondary text-center">Selectează o zi:</h2>
+          <div className="d-flex flex-wrap justify-content-center">
             {Object.keys(menuData[selectedWeek].days).map(day => (
               <button
                 key={day}
-                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} m-2`}
+                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} day-btn`}
                 onClick={() => setSelectedDay(day)}
               >
                 {menuData[selectedWeek].days[day].icon} {menuData[selectedWeek].days[day].dayName}
