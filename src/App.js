@@ -93,6 +93,7 @@ const App = () => {
             <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {menuData[selectedWeek].days[selectedDay].breakfast}</li>
             <li className="list-group-item"><strong>🥗 Prânz:</strong> {menuData[selectedWeek].days[selectedDay].lunch}</li>
             <li className="list-group-item"><strong>🍽 Cină:</strong> {menuData[selectedWeek].days[selectedDay].dinner}</li>
+           <li className="list-group-item"><strong>🍽 Snacks:</strong> {menuData[selectedWeek].days[selectedDay].snak}</li>
           </ul>
         </div>
       )}
