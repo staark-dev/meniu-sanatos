@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div className="container mt-4">
       <h1 className="text-center text-primary">
-        <FaUtensils className="me-2" /> Plan Alimentar
+        <FaUtensils className="me-2" /> Plan Alimentar Simona 
       </h1>
 
       {/* Meniu săptămâni */}
