@@ -2,7 +2,7 @@
   "name": "meniu-sanatos",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://staark-dev.github.io/meniu-sanatos",
+  "homepage": "https://staark-dev.github.io/meniu-sanatos/", 
 "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "homepage": "https://staark-dev.github.io/meniu-sanatos",
+    "homepage": " https://staark-dev.github.io/meniu-sanatos/", 
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
