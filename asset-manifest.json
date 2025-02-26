@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/meniu-sanatos/static/css/main.e0940a53.css",
-    "main.js": "/meniu-sanatos/static/js/main.21c3fe4f.js",
+    "main.js": "/meniu-sanatos/static/js/main.ede8ae6b.js",
     "index.html": "/meniu-sanatos/index.html",
     "main.e0940a53.css.map": "/meniu-sanatos/static/css/main.e0940a53.css.map",
-    "main.21c3fe4f.js.map": "/meniu-sanatos/static/js/main.21c3fe4f.js.map"
+    "main.ede8ae6b.js.map": "/meniu-sanatos/static/js/main.ede8ae6b.js.map"
   },
   "entrypoints": [
     "static/css/main.e0940a53.css",
-    "static/js/main.21c3fe4f.js"
+    "static/js/main.ede8ae6b.js"
   ]
 }
