@@ -6,9 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const [selectedWeek, setSelectedWeek] = useState("week_1");
   const [tasks, setTasks] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    setTasks(tasksData[selectedWeek]);
+    setTasks(tasksData[selectedWeek] || []);
   }, [selectedWeek]);
 
   const toggleTask = (id) => {
@@ -16,11 +17,15 @@ const App = () => {
       task.id === id ? { ...task, completed: !task.completed } : task
     );
     setTasks(updatedTasks);
+    localStorage.setItem(`tasks_${selectedWeek}`, JSON.stringify(updatedTasks));
   };
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-primary text-center">Plan Alimentar și Task-uri</h1>
+    <div className={`container mt-4 ${darkMode ? "dark-mode" : ""}`}>
+      {/* Buton Dark Mode */}
+      <button className="btn btn-dark mb-3" onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "🌞 Mod Luminos" : "🌙 Mod Întunecat"}
+      </button>
 
       {/* Selector de săptămână */}
       <div className="mb-4">
@@ -28,17 +33,15 @@ const App = () => {
         <select className="form-select" onChange={(e) => setSelectedWeek(e.target.value)}>
           <option value="week_1">Săptămâna 1</option>
           <option value="week_2">Săptămâna 2</option>
-          <option value="week_3">Săptămâna 3</option>
-          <option value="week_4">Săptămâna 4</option>
         </select>
       </div>
 
-      {/* Afișare meniu săptămânal */}
+      {/* Meniu săptămânal */}
       <div className="card p-3 shadow">
         <h2 className="text-secondary">Meniu pentru {selectedWeek.replace("_", " ")}:</h2>
         {Object.keys(menuData[selectedWeek] || {}).map((day) => (
           <div key={day} className="border p-2 mb-2 bg-light">
-            <h4 className="text-dark">{day.charAt(0).toUpperCase() + day.slice(1)}</h4>
+            <h4 className="text-dark">{menuData[selectedWeek][day].icon} {menuData[selectedWeek][day].dayName}</h4>
             <ul className="list-group">
               <li className="list-group-item"><strong>Mic dejun:</strong> {menuData[selectedWeek][day].breakfast}</li>
               <li className="list-group-item"><strong>Prânz:</strong> {menuData[selectedWeek][day].lunch}</li>
@@ -50,19 +53,23 @@ const App = () => {
         ))}
       </div>
 
-      {/* Afișare task-uri */}
+      {/* Task-uri zilnice */}
       <h2 className="mt-4">Task-uri pentru {selectedWeek.replace("_", " ")}:</h2>
+      {tasks.length > 0 && tasks.every(task => task.completed) && (
+        <div className="alert alert-success" role="alert">
+          ✅ Felicitări! Ai completat toate task-urile acestei săptămâni!
+        </div>
+      )}
       <ul className="list-group">
-        {tasks && tasks.length > 0 ? (
-          tasks.map((task) => (
-            <li key={task.id} className="list-group-item d-flex align-items-center">
-              <input className="form-check-input me-2" type="checkbox" checked={task.completed} onChange={() => toggleTask(task.id)} />
-              {task.text}
-            </li>
-          ))
-        ) : (
-          <p className="text-muted">Nu există task-uri pentru această săptămână.</p>
-        )}
+        {tasks.map(task => (
+          <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
+            {task.text}
+            <button className={`btn ${task.completed ? "btn-success" : "btn-outline-secondary"} btn-sm`} 
+              onClick={() => toggleTask(task.id)}>
+              {task.completed ? "✔️" : "⚪"}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
