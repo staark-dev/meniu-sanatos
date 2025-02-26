@@ -1,16 +1,16 @@
 export const fetchPlanAlimentar = async () => {
   try {
-    alert("Încerc să încarc JSON-ul...");
+    console.log("Încerc să încarc JSON-ul...");
     const response = await fetch("/plan_alimentar.json");
     if (!response.ok) {
-      alert(`Eroare la încărcare: ${response.status} ${response.statusText}`);
-      return null;
+      throw new Error(`Eroare la încărcarea JSON: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
-    alert("JSON încărcat cu succes!");
+    console.log("JSON încărcat cu succes:", data);
     return data;
   } catch (error) {
-    alert("Eroare la încărcarea JSON!");
+    console.error("Eroare la încărcarea JSON:", error);
+    alert(`Eroare la încărcarea JSON: ${error.message}`);
     return null;
   }
 };
