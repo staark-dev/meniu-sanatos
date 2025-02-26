@@ -13,92 +13,89 @@ const App = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [weeklyProgress, setWeeklyProgress] = useState(0);
 
-useEffect(() => {
-  fetchPlanAlimentar().then((data) => {
-    if (data) {
-      console.log("Plan alimentar încărcat:", data); // Verifică în consolă
-      setPlan(data);
-      const firstWeek = Object.keys(data)[0];
-      setSelectedWeek(firstWeek);
-      const firstDay = Object.keys(data[firstWeek].days)[0];
-      setSelectedDay(firstDay);
-      setTasks(data[firstWeek].days[firstDay].tasks || []);
+  // Încarcă planul alimentar la inițializare
+  useEffect(() => {
+    fetchPlanAlimentar().then((data) => {
+      if (data) {
+        setPlan(data);
+        const firstWeek = Object.keys(data)[0];
+        setSelectedWeek(firstWeek);
+        const firstDay = Object.keys(data[firstWeek].days)[0];
+        setSelectedDay(firstDay);
+        setTasks(data[firstWeek].days[firstDay].tasks || []);
+      } else {
+        console.error("Planul alimentar nu s-a putut încărca.");
+      }
+    });
+  }, []);
+
+  // Calculează progresul săptămânal
+  const calculateWeeklyProgress = () => {
+    if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
+
+    let totalTasks = 0;
+    let completedTasksTotal = 0;
+
+    Object.values(plan[selectedWeek].days).forEach(day => {
+      if (day.tasks) {
+        totalTasks += day.tasks.length;
+        completedTasksTotal += day.tasks.filter(task => task.completed).length;
+      }
+    });
+
+    return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
+  };
+
+  // Actualizează progresul săptămânal când se modifică task-urile
+  useEffect(() => {
+    if (plan && selectedWeek) {
+      setWeeklyProgress(calculateWeeklyProgress());
+    }
+  }, [tasks, selectedWeek, plan]);
+
+  // Marchează task-urile ca finalizate și salvează în localStorage
+  const toggleTask = (id) => {
+    const updatedTasks = tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+
+    setTasks(updatedTasks);
+    localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
+
+    const allTasksCompleted = updatedTasks.every(task => task.completed);
+
+    if (allTasksCompleted) {
+      setTimeout(() => setTasks([]), 1000);
+      setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
     } else {
-      console.error("Planul alimentar nu s-a putut încărca.");
+      const remainingTasks = updatedTasks.filter(task => !task.completed).length;
+      setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
     }
-  });
-}, []);
 
-const calculateWeeklyProgress = () => {
-  let totalTasks = 0;
-  let completedTasksTotal = 0;
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
+  };
 
-  Object.values(plan[selectedWeek].days).forEach(day => {
-    if (day.tasks) {
-      totalTasks += day.tasks.length;
-      completedTasksTotal += day.tasks.filter(task => task.completed).length;
+  // Încarcă task-urile salvate din localStorage când se schimbă ziua/săptămâna
+  useEffect(() => {
+    if (selectedDay && plan && selectedWeek) {
+      const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+      if (savedTasks) {
+        setTasks(JSON.parse(savedTasks));
+      } else {
+        setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
+      }
     }
-  });
-
-  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
-};
-
-useEffect(() => {
-  setWeeklyProgress(calculateWeeklyProgress());
-}, [tasks, selectedWeek]);
+  }, [selectedWeek, selectedDay, plan]);
 
   if (!plan) {
     return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
   }
 
-/*  const toggleTask = (id) => {
-    const updatedTasks = tasks.map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    );
-
-    const remainingTasks = updatedTasks.filter(task => !task.completed).length;
-
-    setTasks(updatedTasks);
-
-    if (remainingTasks === 0) {
-      setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ${plan[selectedWeek].days[selectedDay].dayName}!`);
-      setTimeout(() => setShowPopup(false), 7000);
-    } else {
-      setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
-      setTimeout(() => setShowPopup(false), 5000);
-    }
-
-    setShowPopup(true);
-  };
-*/
-const toggleTask = (id) => {
-  const updatedTasks = tasks.map(task =>
-    task.id === id ? { ...task, completed: !task.completed } : task
-  );
-
-  setTasks(updatedTasks);
-
-  // Verifică dacă toate task-urile sunt completate
-  const allTasksCompleted = updatedTasks.every(task => task.completed);
-
-  if (allTasksCompleted) {
-    setTimeout(() => {
-      setTasks([]); // Ascunde cardul după 1 secundă
-    }, 1000);
-    
-    setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
-  } else {
-    const remainingTasks = updatedTasks.filter(task => !task.completed).length;
-    setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
-  }
-
-  setShowPopup(true);
-};
-
   return (
     <div className="container mt-4">
       <h1 className="text-center text-primary">
-        <FaUtensils className="me-2" /> Plan Alimentar Simona 
+        <FaUtensils className="me-2" /> Plan Alimentar Simona
       </h1>
 
       {/* Meniu săptămâni */}
@@ -126,7 +123,7 @@ const toggleTask = (id) => {
                 className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
                 onClick={() => setSelectedDay(day)}
               >
-                {plan[selectedWeek].days[day].icon} {plan[selectedWeek].days[day].dayName}
+                {plan[selectedWeek].days[day].dayName}
               </button>
             ))}
           </div>
@@ -164,21 +161,15 @@ const toggleTask = (id) => {
         </div>
       )}
 
-<div className="weekly-summary mt-4">
-  <h3>📊 Progres săptămânal:</h3>
-  <div className="progress">
-    <div className="progress-bar bg-info" role="progressbar" style={{ width: `${calculateWeeklyProgress()}%` }}>
-      {Math.round(calculateWeeklyProgress())}%
-    </div>
-  </div>
-</div>
-
-      {/* Popup notificare */}
-      {showPopup && (
-        <div className="alert alert-info position-fixed top-0 start-50 translate-middle-x mt-3">
-          {popupMessage}
+      {/* Progres săptămânal */}
+      <div className="weekly-summary mt-4">
+        <h3>📊 Progres săptămânal:</h3>
+        <div className="progress">
+          <div className="progress-bar bg-info" role="progressbar" style={{ width: `${weeklyProgress}%` }}>
+            {Math.round(weeklyProgress)}%
+          </div>
         </div>
-      )}
+      </div>
 
       {/* Footer */}
       <footer className="text-center mt-5 p-3 bg-light">
