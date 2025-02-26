@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Plan Alimentar</h1>
+      <h1>Plan Alimentar Project</h1>
       <h2>Meniu Luni:</h2>
       <ul>
         <li><strong>Mic dejun:</strong> {menuData.week_1.monday.breakfast}</li>
