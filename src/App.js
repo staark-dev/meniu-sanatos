@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import menuData from "./data";
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -24,8 +24,7 @@ const App = () => {
     localStorage.setItem("tasks", JSON.stringify(newTasks));
   };
 
-  return (
-    <div className="container">
+  return (<div className="container">
       <h1>Plan Alimentar Project</h1>
       <h2>Meniu Luni:</h2>
       <ul>
