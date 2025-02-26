@@ -1,322 +1,502 @@
 {
-  "week_1": {
-    "name": "Săptămâna 1",
-    "days": {
-      "day_1": {
-        "dayName": "Ziua 1",
-        "breakfast": "Omletă cu spanac și avocado + pâine integrală",
-        "snack1": "Mână de migdale",
-        "lunch": "Piept de pui la grătar cu salată de legume",
-        "snack2": "Iaurt grecesc cu semințe de chia",
-        "dinner": "Somon la cuptor cu sparanghel",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Bea 2L apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Fă 30 min de mișcare",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Evită zahărul procesat",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Consumă proteine la fiecare masă",
-            "completed": false
-          }
-        ]
-      }
+    "week_1": {
+        "name": "Săptămâna 1",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Omletă cu spanac și avocado + pâine integrală",
+                "snack1": "Mână de migdale",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu semințe de chia",
+                "dinner": "Somon la cuptor cu sparanghel",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Bea 2L apă",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Fă 30 min de mișcare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Evită zahărul procesat",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Consumă proteine la fiecare masă",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Fulgi de ovăz cu fructe de pădure",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Salată cu ton, măsline și ou fiert",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă 5 porții de legume",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Redu consumul de sare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Mănâncă încet și mestecă bine",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Fă stretching 10 minute",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie proteic",
+                "snack1": "Baton proteic",
+                "lunch": "Pește alb cu orez brun și legume sotate",
+                "snack2": "Cottage cheese cu zmeură",
+                "dinner": "Supă cremă de dovlecel și piept de pui",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă minim 3 fructe azi",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Nu consuma alimente procesate",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o plimbare de 20 min",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Citește etichetele produselor",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Menține hidratarea",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Evită fast-food",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o activitate fizică plăcută",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Odihnește-te corespunzător",
+                        "completed": false
+                    }
+                ]
+            }
+        }
+    },
+    "week_2": {
+        "name": "Săptămâna 2",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Omletă cu spanac și avocado + pâine integrală",
+                "snack1": "Mână de migdale",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu semințe de chia",
+                "dinner": "Somon la cuptor cu sparanghel",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Bea 2L apă",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Fă 30 min de mișcare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Evită zahărul procesat",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Consumă proteine la fiecare masă",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Fulgi de ovăz cu fructe de pădure",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Salată cu ton, măsline și ou fiert",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă 5 porții de legume",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Redu consumul de sare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Mănâncă încet și mestecă bine",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Fă stretching 10 minute",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie proteic",
+                "snack1": "Baton proteic",
+                "lunch": "Pește alb cu orez brun și legume sotate",
+                "snack2": "Cottage cheese cu zmeură",
+                "dinner": "Supă cremă de dovlecel și piept de pui",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă minim 3 fructe azi",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Nu consuma alimente procesate",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o plimbare de 20 min",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Citește etichetele produselor",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Menține hidratarea",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Evită fast-food",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o activitate fizică plăcută",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Odihnește-te corespunzător",
+                        "completed": false
+                    }
+                ]
+            }
+        }
+    },
+    "week_3": {
+        "name": "Săptămâna 3",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Omletă cu spanac și avocado + pâine integrală",
+                "snack1": "Mână de migdale",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu semințe de chia",
+                "dinner": "Somon la cuptor cu sparanghel",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Bea 2L apă",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Fă 30 min de mișcare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Evită zahărul procesat",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Consumă proteine la fiecare masă",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Fulgi de ovăz cu fructe de pădure",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Salată cu ton, măsline și ou fiert",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă 5 porții de legume",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Redu consumul de sare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Mănâncă încet și mestecă bine",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Fă stretching 10 minute",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie proteic",
+                "snack1": "Baton proteic",
+                "lunch": "Pește alb cu orez brun și legume sotate",
+                "snack2": "Cottage cheese cu zmeură",
+                "dinner": "Supă cremă de dovlecel și piept de pui",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă minim 3 fructe azi",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Nu consuma alimente procesate",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o plimbare de 20 min",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Citește etichetele produselor",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Menține hidratarea",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Evită fast-food",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o activitate fizică plăcută",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Odihnește-te corespunzător",
+                        "completed": false
+                    }
+                ]
+            }
+        }
+    },
+    "week_4": {
+        "name": "Săptămâna 4",
+        "days": {
+            "day_1": {
+                "dayName": "Ziua 1",
+                "breakfast": "Omletă cu spanac și avocado + pâine integrală",
+                "snack1": "Mână de migdale",
+                "lunch": "Piept de pui la grătar cu salată de legume",
+                "snack2": "Iaurt grecesc cu semințe de chia",
+                "dinner": "Somon la cuptor cu sparanghel",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Bea 2L apă",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Fă 30 min de mișcare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Evită zahărul procesat",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Consumă proteine la fiecare masă",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_2": {
+                "dayName": "Ziua 2",
+                "breakfast": "Fulgi de ovăz cu fructe de pădure",
+                "snack1": "Un ou fiert + castravete",
+                "lunch": "Tocăniță de curcan cu legume",
+                "snack2": "Nuci și ceai verde",
+                "dinner": "Salată cu ton, măsline și ou fiert",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă 5 porții de legume",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Redu consumul de sare",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Mănâncă încet și mestecă bine",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Fă stretching 10 minute",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_3": {
+                "dayName": "Ziua 3",
+                "breakfast": "Smoothie proteic",
+                "snack1": "Baton proteic",
+                "lunch": "Pește alb cu orez brun și legume sotate",
+                "snack2": "Cottage cheese cu zmeură",
+                "dinner": "Supă cremă de dovlecel și piept de pui",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Consumă minim 3 fructe azi",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Nu consuma alimente procesate",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o plimbare de 20 min",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Citește etichetele produselor",
+                        "completed": false
+                    }
+                ]
+            },
+            "day_4-7": {
+                "dayName": "Ziua 4-7",
+                "breakfast": "Se alternează mesele din zilele anterioare",
+                "snack1": "-",
+                "lunch": "-",
+                "snack2": "-",
+                "dinner": "-",
+                "tasks": [
+                    {
+                        "id": 1,
+                        "text": "Menține hidratarea",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "text": "Evită fast-food",
+                        "completed": false
+                    },
+                    {
+                        "id": 3,
+                        "text": "Fă o activitate fizică plăcută",
+                        "completed": false
+                    },
+                    {
+                        "id": 4,
+                        "text": "Odihnește-te corespunzător",
+                        "completed": false
+                    }
+                ]
+            }
+        }
     }
-  },
-  "week_2": {
-    "name": "Săptămâna 2",
-    "days": {
-      "day_1": {
-        "dayName": "Ziua 1",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_2": {
-        "dayName": "Ziua 2",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_3": {
-        "dayName": "Ziua 3",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      }
-    }
-  },
-  "week_3": {
-    "name": "Săptămâna 3",
-    "days": {
-      "day_1": {
-        "dayName": "Ziua 1",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_2": {
-        "dayName": "Ziua 2",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_3": {
-        "dayName": "Ziua 3",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      }
-    }
-  },
-  "week_4": {
-    "name": "Săptămâna 4",
-    "days": {
-      "day_1": {
-        "dayName": "Ziua 1",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_2": {
-        "dayName": "Ziua 2",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      },
-      "day_3": {
-        "dayName": "Ziua 3",
-        "breakfast": "Alimente similare săptămânii 1",
-        "snack1": "Fructe / Nuci",
-        "lunch": "Prânz echilibrat",
-        "snack2": "Gustare sănătoasă",
-        "dinner": "Cină ușoară",
-        "tasks": [
-          {
-            "id": 1,
-            "text": "Începe ziua cu un pahar de apă",
-            "completed": false
-          },
-          {
-            "id": 2,
-            "text": "Consumă alimente bogate în fibre",
-            "completed": false
-          },
-          {
-            "id": 3,
-            "text": "Fă exerciții de respirație profundă",
-            "completed": false
-          },
-          {
-            "id": 4,
-            "text": "Petrece timp în aer liber",
-            "completed": false
-          }
-        ]
-      }
-    }
-  }
 }
