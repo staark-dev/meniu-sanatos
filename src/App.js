@@ -11,7 +11,7 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
-
+  const [weeklyProgress, setWeeklyProgress] = useState(0);
 
 useEffect(() => {
   fetchPlanAlimentar().then((data) => {
@@ -28,6 +28,10 @@ useEffect(() => {
     }
   });
 }, []);
+
+useEffect(() => {
+  setWeeklyProgress(calculateWeeklyProgress());
+}, [tasks, selectedWeek]);
 
   if (!plan) {
     return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
@@ -90,11 +94,6 @@ const calculateWeeklyProgress = () => {
 
   return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
 };
-
-useEffect(() => {
-  setWeeklyProgress(calculateWeeklyProgress());
-}, [tasks, selectedWeek]);
-
 
   return (
     <div className="container mt-4">
