@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/meniu-sanatos/static/js/main.395c83a0.js",
+    "main.js": "/meniu-sanatos/static/js/main.bfa1435e.js",
     "index.html": "/meniu-sanatos/index.html",
-    "main.395c83a0.js.map": "/meniu-sanatos/static/js/main.395c83a0.js.map"
+    "main.bfa1435e.js.map": "/meniu-sanatos/static/js/main.bfa1435e.js.map"
   },
   "entrypoints": [
-    "static/js/main.395c83a0.js"
+    "static/js/main.bfa1435e.js"
   ]
 }
