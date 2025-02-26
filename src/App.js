@@ -12,17 +12,22 @@ const App = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
-  useEffect(() => {
-    fetchPlanAlimentar().then((data) => {
-      if (data) {
-        setPlan(data);
-        const firstWeek = Object.keys(data)[0];
-        setSelectedWeek(firstWeek);
-        const firstDay = Object.keys(data[firstWeek].days)[0];
-        setSelectedDay(firstDay);
-      }
-    });
-  }, []);
+
+useEffect(() => {
+  fetchPlanAlimentar().then((data) => {
+    if (data) {
+      console.log("Plan alimentar încărcat:", data); // Verifică în consolă
+      setPlan(data);
+      const firstWeek = Object.keys(data)[0];
+      setSelectedWeek(firstWeek);
+      const firstDay = Object.keys(data[firstWeek].days)[0];
+      setSelectedDay(firstDay);
+      setTasks(data[firstWeek].days[firstDay].tasks || []);
+    } else {
+      console.error("Planul alimentar nu s-a putut încărca.");
+    }
+  });
+}, []);
 
   if (!plan) {
     return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
