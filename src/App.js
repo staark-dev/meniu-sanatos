@@ -77,6 +77,25 @@ const toggleTask = (id) => {
   setShowPopup(true);
 };
 
+const calculateWeeklyProgress = () => {
+  let totalTasks = 0;
+  let completedTasksTotal = 0;
+
+  Object.values(plan[selectedWeek].days).forEach(day => {
+    if (day.tasks) {
+      totalTasks += day.tasks.length;
+      completedTasksTotal += day.tasks.filter(task => task.completed).length;
+    }
+  });
+
+  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
+};
+
+useEffect(() => {
+  setWeeklyProgress(calculateWeeklyProgress());
+}, [tasks, selectedWeek]);
+
+
   return (
     <div className="container mt-4">
       <h1 className="text-center text-primary">
@@ -145,6 +164,15 @@ const toggleTask = (id) => {
           </ul>
         </div>
       )}
+
+<div className="weekly-summary mt-4">
+  <h3>📊 Progres săptămânal:</h3>
+  <div className="progress">
+    <div className="progress-bar bg-info" role="progressbar" style={{ width: `${calculateWeeklyProgress()}%` }}>
+      {Math.round(calculateWeeklyProgress())}%
+    </div>
+  </div>
+</div>
 
       {/* Popup notificare */}
       {showPopup && (
