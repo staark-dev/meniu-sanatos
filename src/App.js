@@ -28,30 +28,35 @@ const App = () => {
       }
     });
   }, []);
+  
+  const isDayCompleted = (day) => {
+     if (!day.tasks) return false;
+     return day.tasks.every(task => task.completed);
+  };
 
   // Calculează progresul săptămânal
   const calculateWeeklyProgress = () => {
-    if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
+  if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
 
-    let totalTasks = 0;
-    let completedTasksTotal = 0;
+  let totalTasks = 0;
+  let completedTasksTotal = 0;
 
-    Object.values(plan[selectedWeek].days).forEach(day => {
-      if (day.tasks) {
-        totalTasks += day.tasks.length;
-        completedTasksTotal += day.tasks.filter(task => task.completed).length;
-      }
-    });
+  Object.values(plan[selectedWeek].days).forEach(day => {
+    if (day.tasks && !isDayCompleted(day)) { // Exclude zilele completate
+      totalTasks += day.tasks.length;
+      completedTasksTotal += day.tasks.filter(task => task.completed).length;
+    }
+  });
 
-    return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
-  };
+  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 100; // Dacă toate zilele sunt completate, progresul să fie 100%
+};
 
   // Actualizează progresul săptămânal când se modifică task-urile
-  useEffect(() => {
-    if (plan && selectedWeek) {
-      setWeeklyProgress(calculateWeeklyProgress());
-    }
-  }, [tasks, selectedWeek, plan]);
+useEffect(() => {
+  if (plan && selectedWeek) {
+    setWeeklyProgress(calculateWeeklyProgress());
+  }
+}, [tasks, selectedWeek, plan]);
 
   // Marchează task-urile ca finalizate și salvează în localStorage
   const toggleTask = (id) => {
@@ -117,16 +122,18 @@ const App = () => {
         <div>
           <h2 className="text-secondary text-center">Selectează o zi:</h2>
           <div className="d-flex flex-wrap justify-content-center">
-            {Object.keys(plan[selectedWeek].days).map(day => (
-              <button
-                key={day}
-                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
-                onClick={() => setSelectedDay(day)}
-              >
-                {plan[selectedWeek].days[day].dayName}
-              </button>
-            ))}
-          </div>
+  {Object.keys(plan[selectedWeek].days)
+    .filter(day => !isDayCompleted(plan[selectedWeek].days[day])) // Ascunde zilele finalizate
+    .map(day => (
+      <button
+        key={day}
+        className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
+        onClick={() => setSelectedDay(day)}
+      >
+        {plan[selectedWeek].days[day].dayName}
+      </button>
+    ))}
+</div>
         </div>
       )}
 
