@@ -48,7 +48,9 @@ useEffect(() => {
     setWeeklyProgress(calculateWeeklyProgress());
   }
 }, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
-
+if (!plan || !selectedWeek || !selectedDay) {
+  return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
+}
   return (
     <div className="container mt-4">
       {/* NAVBAR */}
