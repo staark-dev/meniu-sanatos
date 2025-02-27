@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchPlanAlimentar } from "./data";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { calculateWeeklyProgress } from "./utils/calculateProgress";
 import { FaCheckCircle, FaRegCircle, FaUserCircle, FaChartLine } from "react-icons/fa";
 
 const App = () => {
@@ -15,66 +16,70 @@ const App = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
 
-      useEffect(() => {
+    useEffect(() => {
         fetchPlanAlimentar().then((data) => {
-          if (data) {
+            if (data) {
             setPlan(data);
             const firstWeek = Object.keys(data)[0];
             setSelectedWeek(firstWeek);
             const firstDay = Object.keys(data[firstWeek].days)[0];
             setSelectedDay(firstDay);
             setTasks(data[firstWeek].days[firstDay].tasks || []);
-          } else {
+            } else {
             console.error("Planul alimentar nu s-a putut încărca.");
-          }
+            }
         });
-      }, []);
+    }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         if (selectedDay && plan && selectedWeek) {
-          const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
-          
-          if (savedTasks) {
-            console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
-            setTasks(JSON.parse(savedTasks));
-          } else {
-            console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
-            setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
-          }
+            const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+            
+            if (savedTasks) {
+                console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
+                setTasks(JSON.parse(savedTasks));
+            } else {
+                console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
+                setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
+            }
         }
-      }, [selectedWeek, selectedDay, plan]);
+    }, [selectedWeek, selectedDay, plan]);
 
-    const calculateWeeklyProgress = useCallback(() => {
-        if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
-        
-        let totalTasks = 0;
-        let completedTasksTotal = 0;
-        
-        Object.values(plan[selectedWeek].days).forEach(day => {
-          if (day.tasks) {
-            totalTasks += day.tasks.length;
-            completedTasksTotal += day.tasks.filter(task => task.completed).length;
-          }
-        });
-        
-        return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 100;
-    }, [plan, selectedWeek]);
+    useEffect(() => {
+        if (selectedDay && plan && selectedWeek) {
+            const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+            
+            if (savedTasks) {
+                console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
+                setTasks(JSON.parse(savedTasks));
+            } else {
+                console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
+                setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
+            }
+        }
+    }, [selectedWeek, selectedDay, plan]);
     
+    // Calcul progres săptămânal după fiecare schimbare a `tasks`
     useEffect(() => {
         if (plan && selectedWeek) {
-          setWeeklyProgress(calculateWeeklyProgress());
+            setWeeklyProgress(calculateWeeklyProgress(plan, selectedWeek));
+            console.log(`📊 Progres actualizat: ${calculateWeeklyProgress(plan, selectedWeek)}%`);
         }
-    }, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
-
+    }, [tasks, selectedWeek, plan]);
+        
     const toggleTask = (id) => {
         const updatedTasks = tasks.map(task =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+            task.id === id ? { ...task, completed: !task.completed } : task
         );
 
         setTasks(updatedTasks);
-
+        
         // Salvăm progresul în LocalStorage
         localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
+
+        setPopupMessage(`🎉 Felicitări, ai finalizat unul dintre task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 4000);
 
         // Verificăm dacă toate task-urile sunt completate
         const allTasksCompleted = updatedTasks.every(task => task.completed);
@@ -82,11 +87,11 @@ const App = () => {
         if (allTasksCompleted) {
             setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
             setShowPopup(true);
-            setTimeout(() => setShowPopup(false), 4000); // Pop-up dispare după 4 secunde
+            setTimeout(() => setShowPopup(false), 4000);
 
             setTimeout(() => {
-                setTasks([]); // Ascunde cardul după 1 secundă
-            }, 1000);
+                setTasks([]);
+            }, 100);
         }
     };
 
@@ -165,8 +170,18 @@ const App = () => {
     </div>
 
     {/* Bara de progres zilnic */}
+    {/* Bara de progres săptămânal */}
     <div className="progress my-3">
-        <div className="progress-bar bg-success" role="progressbar" style={{ width: `${(tasks.filter(task => task.completed).length / tasks.length) * 100}%` }}>
+        <div className="progress-bar bg-success position-relative" role="progressbar" style={{ width: `${weeklyProgress}%` }}>
+            <span className="position-absolute w-100 text-center text-white fw-bold">
+                {Math.round(weeklyProgress)}% completat
+            </span>
+        </div>
+    </div>
+
+
+    <div className="progress my-3">
+        <div className="progress-bar bg-success" role="progressbar" placeholder="Task Progres" style={{ width: `${(tasks.filter(task => task.completed).length / tasks.length) * 100}%` }}>
             {Math.round((tasks.filter(task => task.completed).length / tasks.length) * 100)}%
         </div>
     </div>
@@ -177,9 +192,9 @@ const App = () => {
         <h3>🍽 {plan[selectedWeek].days[selectedDay].dayName}</h3>
         <ul className="list-group">
             <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {plan[selectedWeek].days[selectedDay].breakfast}</li>
-            <li className="list-group-item"><strong>🥑 Gustare 1:</strong> {plan[selectedWeek].days[selectedDay].snack1}</li>
+            <li className="list-group-item"><strong>🥑 Gustare:</strong> {plan[selectedWeek].days[selectedDay].snack1}</li>
             <li className="list-group-item"><strong>🥗 Prânz:</strong> {plan[selectedWeek].days[selectedDay].lunch}</li>
-            <li className="list-group-item"><strong>🍌 Gustare 2:</strong> {plan[selectedWeek].days[selectedDay].snack2}</li>
+            <li className="list-group-item"><strong>🍌 Gustare:</strong> {plan[selectedWeek].days[selectedDay].snack2}</li>
             <li className="list-group-item"><strong>🍽 Cină:</strong> {plan[selectedWeek].days[selectedDay].dinner}</li>
         </ul>
         </div>
