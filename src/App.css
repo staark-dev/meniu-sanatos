@@ -63,3 +63,9 @@ body {
     font-size: 0.8rem;
   }
 }
+
+.progress-bar.progress-bar-striped.bg-info {
+  color: #0b2e7e;
+  font-size: 14px;
+  font-weight: 600;
+}

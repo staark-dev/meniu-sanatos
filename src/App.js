@@ -67,7 +67,7 @@ const App = () => {
         }
     }, [tasks, selectedWeek, plan]);
         
-    const toggleTask = (id) => {
+    /*const toggleTask = (id) => {
         const updatedTasks = tasks.map(task =>
             task.id === id ? { ...task, completed: !task.completed } : task
         );
@@ -93,11 +93,54 @@ const App = () => {
                 setTasks([]);
             }, 100);
         }
+    };*/
+
+    const toggleTask = (id) => {
+        // Actualizează task-urile curente
+        const updatedTasks = tasks.map(task =>
+            task.id === id ? { ...task, completed: !task.completed } : task
+        );
+
+        setTasks(updatedTasks);
+        localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
+
+        // Actualizează planul pentru ziua curentă astfel încât să reflecte modificarea
+        setPlan(prevPlan => ({
+            ...prevPlan,
+            [selectedWeek]: {
+            ...prevPlan[selectedWeek],
+            days: {
+                ...prevPlan[selectedWeek].days,
+                [selectedDay]: {
+                ...prevPlan[selectedWeek].days[selectedDay],
+                tasks: updatedTasks
+                }
+            }
+            }
+        }));
+
+        // Verifică progresul pentru ziua curentă
+        const remainingTasks = updatedTasks.filter(task => !task.completed).length;
+
+        if (remainingTasks === 0) {
+            setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
+            setShowPopup(true);
+            setTimeout(() => setShowPopup(false), 4000);
+            // Dacă toate task-urile sunt complete, poți opta să ascunzi cardul după un timp
+            setTimeout(() => {
+            setTasks([]); 
+            }, 1000);
+        } else {
+            setPopupMessage(`📢 Mai ai ${remainingTasks} task-uri pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}.`);
+            setShowPopup(true);
+            setTimeout(() => setShowPopup(false), 4000);
+        }
     };
 
-  if (!plan || !selectedWeek || !selectedDay) {
-    return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
-  }
+
+    if (!plan || !selectedWeek || !selectedDay) {
+        return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
+    }
   
   return (<div className="container mt-4">
     {/* NAVBAR */}
@@ -171,18 +214,17 @@ const App = () => {
 
     {/* Bara de progres zilnic */}
     {/* Bara de progres săptămânal */}
-    <div className="progress my-3">
-        <div className="progress-bar bg-success position-relative" role="progressbar" style={{ width: `${weeklyProgress}%` }}>
-            <span className="position-absolute w-100 text-center text-white fw-bold">
-                {Math.round(weeklyProgress)}% completat
-            </span>
-        </div>
+    <div className="progress my-3 hidden" style={{ height: '30px', display: 'none' }}>
+        <div class="progress-bar" role="progressbar" style={{ width: '15%'}} aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-success" role="progressbar" style={{ width: '30%'}} aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-info" role="progressbar" style={{ width: '20%'}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
-
-    <div className="progress my-3">
-        <div className="progress-bar bg-success" role="progressbar" placeholder="Task Progres" style={{ width: `${(tasks.filter(task => task.completed).length / tasks.length) * 100}%` }}>
-            {Math.round((tasks.filter(task => task.completed).length / tasks.length) * 100)}%
+    <div className="progress my-3" style={{ height: '30px' }}>
+        <div className="progress-bar progress-bar-striped bg-info" role="progressbar" placeholder="Task Progres" style={{ width: `${(tasks.filter(task => task.completed).length / tasks.length) * 100}%` }}>
+            📊 Progres task-uri: {Math.round((tasks.filter(task => task.completed).length / tasks.length) * 100)}%  completat
+            <span className="position-absolute w-100 text-center text-white fw-bold">
+            </span>
         </div>
     </div>
 
@@ -201,7 +243,7 @@ const App = () => {
     )}
 
         {/* TASK-URI */}
-        {tasks.length > 0 && tasks.some(task => !task.completed) ? (
+        {tasks.length > 0 && tasks.some(task => !task.completed) && (
         <div className="mt-4">
             <h3>📋 Task-uri pentru ziua {plan[selectedWeek].days[selectedDay].dayName}:</h3>
             <ul className="list-group">
@@ -215,8 +257,6 @@ const App = () => {
             ))}
             </ul>
         </div>
-        ) : (
-            <p className="text-muted text-center mt-5 py-5">✅ Nu ai task-uri de făcut azi!</p>
         )}
 
         {showPopup && (
