@@ -123,7 +123,7 @@ if (!plan || !selectedWeek || !selectedDay) {
       )}
     </div>
 
-{tasks.length > 0 ? (
+{tasks.length > 0 && (
   <div className="mt-4">
     <h3>📋 Task-uri pentru ziua {plan[selectedWeek].days[selectedDay].dayName}:</h3>
     <ul className="list-group">
