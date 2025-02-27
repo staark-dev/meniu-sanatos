@@ -2,71 +2,92 @@ import React, { useState, useEffect, useCallback } from "react";
 import { fetchPlanAlimentar } from "./data";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaUserCircle, FaChartLine } from "react-icons/fa";
+import { FaCheckCircle, FaRegCircle, FaUserCircle, FaChartLine } from "react-icons/fa";
 
 const App = () => {
-  const [plan, setPlan] = useState(null);
-  const [selectedWeek, setSelectedWeek] = useState(null);
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [tasks, setTasks] = useState([]);
-  const [weeklyProgress, setWeeklyProgress] = useState(0);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [plan, setPlan] = useState(null);
+    const [selectedWeek, setSelectedWeek] = useState(null);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const [weeklyProgress, setWeeklyProgress] = useState(0);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    fetchPlanAlimentar().then((data) => {
-      if (data) {
-        setPlan(data);
-        const firstWeek = Object.keys(data)[0];
-        setSelectedWeek(firstWeek);
-        const firstDay = Object.keys(data[firstWeek].days)[0];
-        setSelectedDay(firstDay);
-        setTasks(data[firstWeek].days[firstDay].tasks || []);
-      } else {
-        console.error("Planul alimentar nu s-a putut încărca.");
-      }
-    });
-  }, []);
+      useEffect(() => {
+        fetchPlanAlimentar().then((data) => {
+          if (data) {
+            setPlan(data);
+            const firstWeek = Object.keys(data)[0];
+            setSelectedWeek(firstWeek);
+            const firstDay = Object.keys(data[firstWeek].days)[0];
+            setSelectedDay(firstDay);
+            setTasks(data[firstWeek].days[firstDay].tasks || []);
+          } else {
+            console.error("Planul alimentar nu s-a putut încărca.");
+          }
+        });
+      }, []);
 
-useEffect(() => {
-  if (selectedDay && plan && selectedWeek) {
-    const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+      useEffect(() => {
+        if (selectedDay && plan && selectedWeek) {
+          const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+          
+          if (savedTasks) {
+            console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
+            setTasks(JSON.parse(savedTasks));
+          } else {
+            console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
+            setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
+          }
+        }
+      }, [selectedWeek, selectedDay, plan]);
+
+    const calculateWeeklyProgress = useCallback(() => {
+        if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
+        
+        let totalTasks = 0;
+        let completedTasksTotal = 0;
+        
+        Object.values(plan[selectedWeek].days).forEach(day => {
+          if (day.tasks) {
+            totalTasks += day.tasks.length;
+            completedTasksTotal += day.tasks.filter(task => task.completed).length;
+          }
+        });
+        
+        return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 100;
+    }, [plan, selectedWeek]);
     
-    if (savedTasks) {
-      console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
-      setTasks(JSON.parse(savedTasks));
-    } else {
-      console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
-      setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
-    }
+    useEffect(() => {
+        if (plan && selectedWeek) {
+          setWeeklyProgress(calculateWeeklyProgress());
+        }
+    }, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
+
+    const toggleTask = (id) => {
+      const updatedTasks = tasks.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      );
+    
+      setTasks(updatedTasks);
+    
+      // Salvăm progresul în LocalStorage
+      localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
+    
+      // Verificăm dacă toate task-urile sunt completate
+      const allTasksCompleted = updatedTasks.every(task => task.completed);
+    
+      if (allTasksCompleted) {
+        setTimeout(() => {
+          setTasks([]); // Ascunde cardul după 1 secundă
+        }, 1000);
+      }
+    };
+
+  if (!plan || !selectedWeek || !selectedDay) {
+    return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
   }
-}, [selectedWeek, selectedDay, plan]);
-
-const calculateWeeklyProgress = useCallback(() => {
-  if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
-
-  let totalTasks = 0;
-  let completedTasksTotal = 0;
-
-  Object.values(plan[selectedWeek].days).forEach(day => {
-    if (day.tasks) {
-      totalTasks += day.tasks.length;
-      completedTasksTotal += day.tasks.filter(task => task.completed).length;
-    }
-  });
-
-  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 100;
-}, [plan, selectedWeek]);
-
-useEffect(() => {
-  if (plan && selectedWeek) {
-    setWeeklyProgress(calculateWeeklyProgress());
-  }
-}, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
-if (!plan || !selectedWeek || !selectedDay) {
-  return <h1 className="text-center mt-5">Se încarcă planul alimentar...</h1>;
-}
-  return (
-  <div className="container mt-4">
+  
+  return (<div className="container mt-4">
     {/* NAVBAR */}
     <nav className="navbar navbar-dark bg-primary px-3 d-flex justify-content-between">
       <h4 className="text-white">📅 Martie</h4>
