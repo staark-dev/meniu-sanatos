@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { fetchPlanAlimentar } from "./data";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,28 +27,27 @@ const App = () => {
     });
   }, []);
 
-  // Funcție pentru calculul progresului
-  const calculateWeeklyProgress = () => {
-    if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
+const calculateWeeklyProgress = useCallback(() => {
+  if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
 
-    let totalTasks = 0;
-    let completedTasksTotal = 0;
+  let totalTasks = 0;
+  let completedTasksTotal = 0;
 
-    Object.values(plan[selectedWeek].days).forEach(day => {
-      if (day.tasks) {
-        totalTasks += day.tasks.length;
-        completedTasksTotal += day.tasks.filter(task => task.completed).length;
-      }
-    });
-
-    return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 0;
-  };
-
-  useEffect(() => {
-    if (plan && selectedWeek) {
-      setWeeklyProgress(calculateWeeklyProgress());
+  Object.values(plan[selectedWeek].days).forEach(day => {
+    if (day.tasks) {
+      totalTasks += day.tasks.length;
+      completedTasksTotal += day.tasks.filter(task => task.completed).length;
     }
-  }, [tasks, selectedWeek, plan, calculateWeeklyProgress ]);
+  });
+
+  return totalTasks > 0 ? (completedTasksTotal / totalTasks) * 100 : 100;
+}, [plan, selectedWeek]);
+
+useEffect(() => {
+  if (plan && selectedWeek) {
+    setWeeklyProgress(calculateWeeklyProgress());
+  }
+}, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
 
   return (
     <div className="container mt-4">
