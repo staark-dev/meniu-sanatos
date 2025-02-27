@@ -27,6 +27,20 @@ const App = () => {
     });
   }, []);
 
+useEffect(() => {
+  if (selectedDay && plan && selectedWeek) {
+    const savedTasks = localStorage.getItem(`tasks_${selectedWeek}_${selectedDay}`);
+    
+    if (savedTasks) {
+      console.log("📝 Task-uri încărcate din localStorage:", JSON.parse(savedTasks));
+      setTasks(JSON.parse(savedTasks));
+    } else {
+      console.log("📌 Task-uri încărcate din JSON:", plan[selectedWeek].days[selectedDay].tasks);
+      setTasks(plan[selectedWeek].days[selectedDay].tasks || []);
+    }
+  }
+}, [selectedWeek, selectedDay, plan]);
+
 const calculateWeeklyProgress = useCallback(() => {
   if (!plan || !selectedWeek || !plan[selectedWeek] || !plan[selectedWeek].days) return 0;
 
