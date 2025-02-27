@@ -11,6 +11,9 @@ const App = () => {
     const [tasks, setTasks] = useState([]);
     const [weeklyProgress, setWeeklyProgress] = useState(0);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropdownWeekOpen, setDropdownWeekOpen] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
 
       useEffect(() => {
         fetchPlanAlimentar().then((data) => {
@@ -64,23 +67,27 @@ const App = () => {
     }, [tasks, selectedWeek, plan, calculateWeeklyProgress]);
 
     const toggleTask = (id) => {
-      const updatedTasks = tasks.map(task =>
+        const updatedTasks = tasks.map(task =>
         task.id === id ? { ...task, completed: !task.completed } : task
-      );
-    
-      setTasks(updatedTasks);
-    
-      // Salvăm progresul în LocalStorage
-      localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
-    
-      // Verificăm dacă toate task-urile sunt completate
-      const allTasksCompleted = updatedTasks.every(task => task.completed);
-    
-      if (allTasksCompleted) {
-        setTimeout(() => {
-          setTasks([]); // Ascunde cardul după 1 secundă
-        }, 1000);
-      }
+        );
+
+        setTasks(updatedTasks);
+
+        // Salvăm progresul în LocalStorage
+        localStorage.setItem(`tasks_${selectedWeek}_${selectedDay}`, JSON.stringify(updatedTasks));
+
+        // Verificăm dacă toate task-urile sunt completate
+        const allTasksCompleted = updatedTasks.every(task => task.completed);
+
+        if (allTasksCompleted) {
+            setPopupMessage(`🎉 Felicitări, ai finalizat toate task-urile pentru ziua ${plan[selectedWeek].days[selectedDay].dayName}!`);
+            setShowPopup(true);
+            setTimeout(() => setShowPopup(false), 4000); // Pop-up dispare după 4 secunde
+
+            setTimeout(() => {
+                setTasks([]); // Ascunde cardul după 1 secundă
+            }, 1000);
+        }
     };
 
   if (!plan || !selectedWeek || !selectedDay) {
@@ -108,6 +115,34 @@ const App = () => {
           )}
         </div>
 
+        {/* Dropdown pentru selectarea săptămânii */}
+        <div className="dropdown me-3">
+          <button
+            className="btn btn-light dropdown-toggle"
+            onClick={() => setDropdownWeekOpen(!dropdownWeekOpen)}
+          >
+            📆 Selectează săptămâna
+          </button>
+          {dropdownWeekOpen && (
+            <div className="dropdown-menu show">
+              {Object.keys(plan).map(week => (
+                <button
+                  key={week}
+                  className="dropdown-item"
+                  onClick={() => {
+                    setSelectedWeek(week);
+                    setSelectedDay(Object.keys(plan[week].days)[0]); // Selectează prima zi
+                    setDropdownWeekOpen(false);
+                  }}
+                >
+                  {plan[week].name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+
         {/* Avatar utilizator */}
         <div className="d-flex align-items-center">
           <FaUserCircle className="text-white fs-3 me-2" />
@@ -118,54 +153,67 @@ const App = () => {
 
     {/* AFIȘARE ZILELE SĂPTĂMÂNII */}
     <div className="week-menu d-flex flex-wrap justify-content-center my-3">
-      {Object.keys(plan[selectedWeek].days).map(day => (
-        <button
-          key={day}
-          className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
-          onClick={() => setSelectedDay(day)}
-        >
-          {plan[selectedWeek].days[day].dayName}
-        </button>
-      ))}
+        {Object.keys(plan[selectedWeek].days).map(day => (
+            <button
+                key={day}
+                className={`btn ${selectedDay === day ? "btn-success" : "btn-outline-success"} mx-1 my-1`}
+                onClick={() => setSelectedDay(day)}
+            >
+                {plan[selectedWeek].days[day].dayName}
+            </button>
+        ))}
+    </div>
+
+    {/* Bara de progres zilnic */}
+    <div className="progress my-3">
+        <div className="progress-bar bg-success" role="progressbar" style={{ width: `${(tasks.filter(task => task.completed).length / tasks.length) * 100}%` }}>
+            {Math.round((tasks.filter(task => task.completed).length / tasks.length) * 100)}%
+        </div>
     </div>
 
     {/* MENIU ZILNIC */}
     {selectedDay && plan[selectedWeek].days[selectedDay] && (
-      <div className="card p-3 shadow mt-3">
+        <div className="card p-3 shadow mt-3">
         <h3>🍽 {plan[selectedWeek].days[selectedDay].dayName}</h3>
         <ul className="list-group">
-          <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {plan[selectedWeek].days[selectedDay].breakfast}</li>
-          <li className="list-group-item"><strong>🥑 Gustare 1:</strong> {plan[selectedWeek].days[selectedDay].snack1}</li>
-          <li className="list-group-item"><strong>🥗 Prânz:</strong> {plan[selectedWeek].days[selectedDay].lunch}</li>
-          <li className="list-group-item"><strong>🍌 Gustare 2:</strong> {plan[selectedWeek].days[selectedDay].snack2}</li>
-          <li className="list-group-item"><strong>🍽 Cină:</strong> {plan[selectedWeek].days[selectedDay].dinner}</li>
+            <li className="list-group-item"><strong>🍳 Mic dejun:</strong> {plan[selectedWeek].days[selectedDay].breakfast}</li>
+            <li className="list-group-item"><strong>🥑 Gustare 1:</strong> {plan[selectedWeek].days[selectedDay].snack1}</li>
+            <li className="list-group-item"><strong>🥗 Prânz:</strong> {plan[selectedWeek].days[selectedDay].lunch}</li>
+            <li className="list-group-item"><strong>🍌 Gustare 2:</strong> {plan[selectedWeek].days[selectedDay].snack2}</li>
+            <li className="list-group-item"><strong>🍽 Cină:</strong> {plan[selectedWeek].days[selectedDay].dinner}</li>
         </ul>
-      </div>
+        </div>
     )}
 
-    {/* TASK-URI */}
-    {tasks.length > 0 ? (
-      <div className="mt-4">
-        <h3>📋 Task-uri pentru ziua {plan[selectedWeek].days[selectedDay].dayName}:</h3>
-        <ul className="list-group">
-          {tasks.map(task => (
-            <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
-              {task.text}
-              <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
-                {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ) : (
-      <p className="text-muted text-center">✅ Nu ai task-uri de făcut azi!</p>
-    )}
+        {/* TASK-URI */}
+        {tasks.length > 0 && tasks.some(task => !task.completed) ? (
+        <div className="mt-4">
+            <h3>📋 Task-uri pentru ziua {plan[selectedWeek].days[selectedDay].dayName}:</h3>
+            <ul className="list-group">
+            {tasks.filter(task => !task.completed).map(task => (
+                <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
+                {task.text}
+                <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
+                    {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
+                </button>
+                </li>
+            ))}
+            </ul>
+        </div>
+        ) : (
+            <p className="text-muted text-center mt-5 py-5">✅ Nu ai task-uri de făcut azi!</p>
+        )}
 
-    {/* FOOTER */}
-    <footer className="text-center mt-5 p-3 bg-light">
-      <FaUserCircle className="me-2 text-primary" /> © 2025 Plan Alimentar - Sănătate și echilibru
-    </footer>
+        {showPopup && (
+        <div className="alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3">
+            {popupMessage}
+        </div>
+        )}
+
+        {/* FOOTER */}
+        <footer className="text-center mt-5 p-3 bg-light">
+            <FaUserCircle className="me-2 text-primary" /> © 2025 Plan Alimentar - Sănătate și echilibru
+        </footer>
   </div>
 );
 };
