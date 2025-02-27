@@ -3,7 +3,7 @@
       "name":"Săptămâna 1",
       "days":{
          "day_1":{
-            "dayName":"Ziua 1",
+            "dayName":"Luni",
             "breakfast":"Omletă cu spanac și avocado + pâine integrală",
             "snack1":"Mână de migdale",
             "lunch":"Piept de pui la grătar cu salată de legume",
@@ -33,7 +33,7 @@
             ]
          },
          "day_2":{
-            "dayName":"Ziua 2",
+            "dayName":"Marti",
             "breakfast":"Fulgi de ovăz cu fructe de pădure",
             "snack1":"Un ou fiert + castravete",
             "lunch":"Tocăniță de curcan cu legume",
@@ -63,7 +63,7 @@
             ]
          },
          "day_3":{
-            "dayName":"Ziua 3",
+            "dayName":"Miercuri",
             "breakfast":"Smoothie proteic",
             "snack1":"Baton proteic",
             "lunch":"Pește alb cu orez brun și legume sotate",
@@ -92,8 +92,68 @@
                }
             ]
          },
-         "day_4-7":{
-            "dayName":"Ziua 4-7",
+         "day_4":{
+            "dayName":"Joi",
+            "breakfast":"Smoothie proteic",
+            "snack1":"Baton proteic",
+            "lunch":"Pește alb cu orez brun și legume sotate",
+            "snack2":"Cottage cheese cu zmeură",
+            "dinner":"Supă cremă de dovlecel și piept de pui",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_5":{
+            "dayName":"Vineri",
+            "breakfast":"Smoothie proteic",
+            "snack1":"Baton proteic",
+            "lunch":"Pește alb cu orez brun și legume sotate",
+            "snack2":"Cottage cheese cu zmeură",
+            "dinner":"Supă cremă de dovlecel și piept de pui",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_6-7":{
+            "dayName":"Weekend",
             "breakfast":"Se alternează mesele din zilele anterioare",
             "snack1":"-",
             "lunch":"-",
@@ -128,7 +188,7 @@
       "name":"Săptămâna 2",
       "days":{
          "day_1":{
-            "dayName":"Ziua 1",
+            "dayName":"Luni",
             "breakfast":"Ouă fierte cu avocado și roșii cherry",
             "snack1":"Mână de nuci",
             "lunch":"Piept de curcan la grătar cu piure de conopidă",
@@ -158,7 +218,7 @@
             ]
          },
          "day_2":{
-            "dayName":"Ziua 2",
+            "dayName":"Marti",
             "breakfast":"Omletă cu ciuperci și feta",
             "snack1":"Baton proteic",
             "lunch":"Salată cu ton, quinoa și spanac",
@@ -188,7 +248,7 @@
             ]
          },
          "day_3":{
-            "dayName":"Ziua 3",
+            "dayName":"Miercuri",
             "breakfast":"Smoothie cu lapte de migdale, banană și unt de arahide",
             "snack1":"Un ou fiert + castravete",
             "lunch":"Friptură de vită cu legume la grătar",
@@ -217,8 +277,68 @@
                }
             ]
          },
-         "day_4-7":{
-            "dayName":"Ziua 4-7",
+         "day4":{
+            "dayName":"Joi",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_5":{
+            "dayName":"Vineri",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_6-7":{
+            "dayName":"Weekend",
             "breakfast":"Se alternează mesele din zilele anterioare",
             "snack1":"-",
             "lunch":"-",
@@ -253,7 +373,7 @@
       "name":"Săptămâna 3",
       "days":{
          "day_1":{
-            "dayName":"Ziua 1",
+            "dayName":"Luni",
             "breakfast":"Iaurt grecesc cu nuci și fructe de pădure",
             "snack1":"Un ou fiert + morcov",
             "lunch":"Somon la aburi cu orez brun și salată verde",
@@ -283,7 +403,7 @@
             ]
          },
          "day_2":{
-            "dayName":"Ziua 2",
+            "dayName":"Marti",
             "breakfast":"Terci de ovăz cu semințe de chia și zmeură",
             "snack1":"Baton proteic",
             "lunch":"Piept de curcan cu piure de cartofi dulci",
@@ -313,15 +433,97 @@
             ]
          },
          "day_3":{
-            "dayName":"Ziua 3",
+            "dayName":"Miercuri",
             "breakfast":"Omletă cu brânză și roșii",
             "snack1":"Mână de migdale",
             "lunch":"Tocăniță de vită cu legume",
             "snack2":"Smoothie proteic",
-            "dinner":"Pește alb la grătar cu dovlecel"
+            "dinner":"Pește alb la grătar cu dovlecel",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
          },
-         "day_4-7":{
-            "dayName":"Ziua 4-7",
+         "day_4":{
+            "dayName":"Joi",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_5":{
+            "dayName":"Vineri",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_6-7":{
+            "dayName":"Weekend",
             "breakfast":"Se alternează mesele din zilele anterioare",
             "snack1":"-",
             "lunch":"-",
@@ -356,7 +558,7 @@
       "name":"Săptămâna 4",
       "days":{
          "day_1":{
-            "dayName":"Ziua 1",
+            "dayName":"Luni",
             "breakfast":"Ouă fierte cu spanac și pâine integrală",
             "snack1":"Un măr verde și unt de arahide",
             "lunch":"Piept de pui la grătar cu salată de legume",
@@ -386,7 +588,7 @@
             ]
          },
          "day_2":{
-            "dayName":"Ziua 2",
+            "dayName":"Marti",
             "breakfast":"Smoothie cu lapte de migdale și fructe de pădure",
             "snack1":"Migdale și ceai verde",
             "lunch":"Pește alb cu orez brun și broccoli",
@@ -416,7 +618,7 @@
             ]
          },
          "day_3":{
-            "dayName":"Ziua 3",
+            "dayName":"Miercuri",
             "breakfast":"Terci de ovăz cu semințe de chia",
             "snack1":"Un ou fiert + castravete",
             "lunch":"Tocăniță de curcan cu legume",
@@ -445,8 +647,68 @@
                }
             ]
          },
-         "day_4-7":{
-            "dayName":"Ziua 4-7",
+         "day_4":{
+            "dayName":"Joi",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_5":{
+            "dayName":"Vineri",
+            "breakfast":"Se alternează mesele din zilele anterioare",
+            "snack1":"-",
+            "lunch":"-",
+            "snack2":"-",
+            "dinner":"-",
+            "tasks":[
+               {
+                  "id": 1,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 2,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 3,
+                  "text":"",
+                  "completed":false
+               },
+               {
+                  "id": 4,
+                  "text":"",
+                  "completed":false
+               }
+            ]
+         },
+         "day_6-7":{
+            "dayName":"Weekend",
             "breakfast":"Se alternează mesele din zilele anterioare",
             "snack1":"-",
             "lunch":"-",
