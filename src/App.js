@@ -48,7 +48,7 @@ const App = () => {
     if (plan && selectedWeek) {
       setWeeklyProgress(calculateWeeklyProgress());
     }
-  }, [tasks, selectedWeek, plan]);
+  }, [tasks, selectedWeek, plan, calculateWeeklyProgress ]);
 
   return (
     <div className="container mt-4">
