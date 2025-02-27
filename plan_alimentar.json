@@ -12,22 +12,22 @@
             "tasks":[
                {
                   "id": 1,
-                  "text":"",
+                  "text":"Bea 2L de apa",
                   "completed":false
                },
                {
                   "id": 2,
-                  "text":"",
+                  "text":"Fa minim 30 min miscare",
                   "completed":false
                },
                {
                   "id": 3,
-                  "text":"",
+                  "text":"Mannca fruncte (Mere, struguri, banane)",
                   "completed":false
                },
                {
                   "id": 4,
-                  "text":"",
+                  "text":"Evită zahărul procesat",
                   "completed":false
                }
             ]
@@ -42,22 +42,22 @@
             "tasks":[
                {
                   "id": 1,
-                  "text":"",
+                  "text":"Consumă proteine la fiecare masă",
                   "completed":false
                },
                {
                   "id": 2,
-                  "text":"",
+                  "text":"Fă stretching 10 minute",
                   "completed":false
                },
                {
                   "id": 3,
-                  "text":"",
+                  "text":"Bea ceai verde dimineața",
                   "completed":false
                },
                {
                   "id": 4,
-                  "text":"",
+                  "text":"Odihnește-te 8 ore",
                   "completed":false
                }
             ]
