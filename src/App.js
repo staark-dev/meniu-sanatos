@@ -108,6 +108,24 @@ if (!plan || !selectedWeek || !selectedDay) {
         </div>
       )}
     </div>
+
+{tasks.length > 0 ? (
+  <div className="mt-4">
+    <h3>📋 Task-uri pentru ziua {plan[selectedWeek].days[selectedDay].dayName}:</h3>
+    <ul className="list-group">
+      {tasks.map(task => (
+        <li key={task.id} className="list-group-item d-flex justify-content-between align-items-center">
+          {task.text}
+          <button className="btn btn-sm btn-outline-secondary" onClick={() => toggleTask(task.id)}>
+            {task.completed ? <FaCheckCircle className="text-success" /> : <FaRegCircle />}
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+) : (
+  <p className="text-muted text-center">✅ Nu ai task-uri de făcut azi!</p>
+)}
   );
 };
 
